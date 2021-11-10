@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IntenDavid">
         <activity
+            android:name=".MoveFromResultActivity"
+            android:exported="false" />
+        <activity
             android:name=".MoveWhiteDataActivity"
             android:exported="false" />
         <activity

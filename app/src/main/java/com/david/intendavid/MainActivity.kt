@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity(), View.OnClickListener{
     private lateinit var btnMoveActivity: Button
     private lateinit var btnMoveWithData: Button
+    private lateinit var btnResultFromActivity: Button
+    private lateinit var tvResult: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +22,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
 
         btnMoveWithData = findViewById(R.id.btn_move_whith_data)
         btnMoveWithData.setOnClickListener(this)
+
+        btnResultFromActivity = findViewById(R.id.btn_result_from_activity)
+        btnResultFromActivity.setOnClickListener(this)
+        tvResult = findViewById(R.id.tv_result)
+        warnaReceived()
+
             }
+
+    private fun warnaReceived() {
+        val bundle = intent.extras
+        val warna = bundle?.getString("warna")
+        tvResult.text = warna
+    }
 
     override fun onClick(v:View?){
         if (v !=null) {
@@ -31,9 +46,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
                 R.id.btn_move_whith_data -> run {
                     val intent = Intent(this, MoveWhiteDataActivity::class.java)
                     val bundle = Bundle()
-                    bundle.putString("Nama", "David")
-                    bundle.putString("Alamat", "jogja")
+                    bundle.putString("Nama", "David Fathurrahman")
+                    bundle.putString("Alamat", "Yogyakarta")
                     intent.putExtras(bundle)
+                    startActivity(intent)
+                }
+                R.id.btn_result_from_activity -> run {
+                    val intent = Intent (this, MoveFromResultActivity::class.java)
                     startActivity(intent)
                 }
 
