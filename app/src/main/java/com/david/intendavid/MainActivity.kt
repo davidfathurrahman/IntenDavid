@@ -1,6 +1,7 @@
 package com.david.intendavid
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.TextView
 class MainActivity : AppCompatActivity(), View.OnClickListener{
     private lateinit var btnMoveActivity: Button
     private lateinit var btnMoveWithData: Button
+    private lateinit var btnDialNumber: Button
     private lateinit var btnResultFromActivity: Button
     private lateinit var tvResult: TextView
 
@@ -22,6 +24,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
 
         btnMoveWithData = findViewById(R.id.btn_move_whith_data)
         btnMoveWithData.setOnClickListener(this)
+
+        btnDialNumber = findViewById(R.id.btn_dial_number)
+        btnDialNumber.setOnClickListener(this)
 
         btnResultFromActivity = findViewById(R.id.btn_result_from_activity)
         btnResultFromActivity.setOnClickListener(this)
@@ -49,6 +54,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
                     bundle.putString("Nama", "David Fathurrahman")
                     bundle.putString("Alamat", "Yogyakarta")
                     intent.putExtras(bundle)
+                    startActivity(intent)
+                }
+                R.id.btn_dial_number -> run {
+                    var dialnumber = "085816943202"
+                    val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + dialnumber))
                     startActivity(intent)
                 }
                 R.id.btn_result_from_activity -> run {
